@@ -1,4 +1,4 @@
-package primer_go
+package primer
 
 import "time"
 
