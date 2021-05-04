@@ -211,6 +211,10 @@ type PaymentResponse struct {
 	Payment
 }
 
+func (b *BaseDTO) SetRequestID(id string) {
+	b.RequestID = &id
+}
+
 // PaymentRequest ...
 type CreatePayment struct {
 	OrderID             string             `json:"orderId"`
@@ -296,4 +300,9 @@ type Data struct {
 type SearchPaymentResponse struct {
 	BaseDTO
 	SearchPayment
+}
+
+// GetPaymentRequest ...
+type GetPaymentRequest struct {
+	BaseDTO
 }

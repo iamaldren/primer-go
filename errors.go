@@ -6,8 +6,9 @@ import (
 )
 
 var (
-	ErrCredentialsMissing = errors.New("API Key credentials missing")
-	ErrBaseURLMissing     = errors.New("base URL missing")
+	ErrCredentialsMissing     = errors.New("API Key credentials missing")
+	ErrBaseURLMissing         = errors.New("base URL missing")
+	ErrXIdempotencyKeyMissing = errors.New("X-Idempotency-Key missing")
 )
 
 // Error is the conventional GrabExpress client error
