@@ -1,3 +1,3 @@
-module github.com/primer-go
+module github.com/iamaldren/primer-go
 
 go 1.15
