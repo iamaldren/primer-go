@@ -61,7 +61,8 @@ const (
 
 // BaseDTO ...
 type BaseDTO struct {
-	RequestID string `json:"requestId,omitempty"`
+	RequestID       *string `json:"requestId,omitempty"`
+	XIdempotencyKey *string `json:"xIdempotencyKey,omitempty"`
 }
 
 // PaymentInstrument ...
@@ -204,8 +205,14 @@ type WorkflowExecutionError struct {
 	StepId *string `json:"stepId,omitempty"`
 }
 
-// CreatePaymentRequest ...
-type CreatePaymentRequest struct {
+// PaymentResponse ...
+type PaymentResponse struct {
+	BaseDTO
+	Payment
+}
+
+// PaymentRequest ...
+type CreatePayment struct {
 	OrderID             string             `json:"orderId"`
 	CurrencyCode        string             `json:"currencyCode"`
 	Amount              string             `json:"amount"`
@@ -215,8 +222,78 @@ type CreatePaymentRequest struct {
 	Metadata            *map[string]string `json:"metadata,omitempty"`
 }
 
-// CreatePaymentResponse ...
-type CreatePaymentResponse struct {
+// CreatePaymentRequest ...
+type CreatePaymentRequest struct {
 	BaseDTO
-	Payment
+	CreatePayment
+}
+
+// CapturePayment ...
+type CapturePayment struct {
+	Amount int64 `json:"amount"`
+	Final  bool  `json:"final"`
+}
+
+// CapturePaymentRequest ...
+type CapturePaymentRequest struct {
+	BaseDTO
+	CapturePayment
+}
+
+// CancelPayment ...
+type CancelPayment struct {
+	Reason string `json:"reason"`
+}
+
+// CancelPaymentRequest ...
+type CancelPaymentRequest struct {
+	BaseDTO
+	CancelPayment
+}
+
+// RefundPayment ...
+type RefundPayment struct {
+	Amount  int64   `json:"amount"`
+	OrderID *string `json:"orderId,omitempty"`
+	Reason  *string `json:"reason,omitempty"`
+}
+
+// RefundPaymentRequest ...
+type RefundPaymentRequest struct {
+	BaseDTO
+	RefundPayment
+}
+
+type ResumePayment struct {
+	ResumeToken string `json:"resumeToken"`
+}
+
+// ResumePaymentRequest ...
+type ResumePaymentRequest struct {
+	BaseDTO
+	ResumePayment
+}
+
+// SearchPayment ...
+type SearchPayment struct {
+	Data       []Data  `json:"data"`
+	NextCursor *string `json:"nextCursor,omitempty"`
+	PrevCursor *string `json:"prevCursor,omitempty"`
+}
+
+// Data ...
+type Data struct {
+	ID           string    `json:"id"`
+	Date         time.Time `json:"date"`
+	Status       string    `json:"status"`
+	OrderID      string    `json:"orderId"`
+	CurrencyCode string    `json:"currencyCode"`
+	Amount       int64     `json:"amount"`
+	Processor    *string   `json:"processor,omitempty"`
+}
+
+// SearchPaymentResponse ...
+type SearchPaymentResponse struct {
+	BaseDTO
+	SearchPayment
 }
