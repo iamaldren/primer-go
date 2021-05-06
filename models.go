@@ -219,7 +219,7 @@ func (b *BaseDTO) SetRequestID(id string) {
 type CreatePayment struct {
 	OrderID             string             `json:"orderId"`
 	CurrencyCode        string             `json:"currencyCode"`
-	Amount              string             `json:"amount"`
+	Amount              int64              `json:"amount"`
 	PaymentInstrument   PaymentInstrument  `json:"paymentInstrument"`
 	StatementDescriptor *string            `json:"statementDescriptor,omitempty"`
 	Customer            *Customer          `json:"customer,omitempty"`
