@@ -33,14 +33,11 @@ func (c *Client) ResumePayment(ctx context.Context, req *ResumePaymentRequest, p
 func (c *Client) GetPayment(ctx context.Context, req *GetPaymentRequest, paymentId string) (*PaymentResponse, error) {
 	path := fmt.Sprintf("/payments/%s", paymentId)
 
-	if strSafeDeref(req.XIdempotencyKey) == "" {
-		return nil, ErrXIdempotencyKeyMissing
-	}
-
 	resp := &PaymentResponse{}
 	if err := c.get(ctx, strSafeDeref(req.XIdempotencyKey), path, nil, resp); err != nil {
 		return nil, err
 	}
+
 	return resp, nil
 }
 

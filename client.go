@@ -87,7 +87,7 @@ func (c *Client) post(ctx context.Context, idempotencyKey, path string, apiReq i
 	return c.do(ctx, req, apiResp)
 }
 
-func (c *Client) createRequest(idempotencyKey, method, path string, request interface{}) (*http.Request, error) {
+func (c *Client) createRequest(method, idempotencyKey, path string, request interface{}) (*http.Request, error) {
 	body, err := marshalRequest(request)
 	if err != nil {
 		return nil, err
