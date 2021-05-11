@@ -59,6 +59,21 @@ const (
 	TokenTypeSingleUse TokenType = "SINGLE_USE"
 )
 
+// PaymentEventType ...
+type PaymentEventType string
+
+// PaymentEventType enum
+const (
+	// PaymentEventTypeCreation -
+	PaymentEventTypeCreation PaymentEventType = "PAYMENT.CREATION"
+	// PaymentEventTypeCreation -
+	PaymentEventTypeCapture PaymentEventType = "PAYMENT.CAPTURE"
+	// PaymentEventTypeCreation -
+	PaymentEventTypeRefund PaymentEventType = "PAYMENT.REFUND"
+	// PaymentEventTypeCreation -
+	PaymentEventTypeCancellation PaymentEventType = "PAYMENT.CANCELLATION"
+)
+
 // BaseDTO ...
 type BaseDTO struct {
 	RequestID       *string `json:"requestId,omitempty"`
